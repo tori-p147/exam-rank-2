@@ -36,14 +36,14 @@ void	ft_strcpy(char *dest, char *src)
 }
 
 void	generate_all_perms(int current_index, int word_len, char *s,
-		char **strs, int *perms_row_index)
+		char **strs, int *strs_row_index)
 {
 	char	tmp;
 
 	if (current_index == word_len)
 	{
-		ft_strcpy(strs[*(perms_row_index)], s);
-		(*perms_row_index)++;
+		ft_strcpy(strs[*(strs_row_index)], s);
+		(*strs_row_index)++;
 		return ;
 	}
 	for (size_t i = current_index; i < word_len; i++)
@@ -52,7 +52,7 @@ void	generate_all_perms(int current_index, int word_len, char *s,
 		s[i] = s[current_index];
 		s[current_index] = tmp;
 		generate_all_perms(current_index + 1, word_len, s, strs,
-			perms_row_index);
+			strs_row_index);
 		tmp = s[i];
 		s[i] = s[current_index];
 		s[current_index] = tmp;
@@ -61,7 +61,7 @@ void	generate_all_perms(int current_index, int word_len, char *s,
 
 int	str_cmp(char *a, char *b)
 {
-	while(*a && *b && *a == *b)
+	while (*a && *b && *a == *b)
 	{
 		a++;
 		b++;
@@ -71,7 +71,8 @@ int	str_cmp(char *a, char *b)
 
 void	sort_strs(char **strs, int strs_count)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	while (i < strs_count - 1)
@@ -79,7 +80,7 @@ void	sort_strs(char **strs, int strs_count)
 		if (str_cmp(strs[i], strs[i + 1]) > 0)
 		{
 			// printf("str i = %s i + 1 = %s\n", strs[i], strs[i + 1]);
-			char *tmp = strs[i];
+			tmp = strs[i];
 			strs[i] = strs[i + 1];
 			strs[i + 1] = tmp;
 			i = 0;
@@ -99,7 +100,7 @@ void	alloc_strs(char ***strs, int strs_count, int word_len)
 
 int	main(int ac, char **av)
 {
-	int		perms_row_index;
+	int		strs_row_index;
 	int		current_index;
 	char	*s;
 	int		word_len;
@@ -118,9 +119,9 @@ int	main(int ac, char **av)
 			word_len++;
 		strs_count = ft_factorial(word_len);
 		alloc_strs(&strs, strs_count, word_len);
-		perms_row_index = 0;
+		strs_row_index = 0;
 		current_index = 0;
-		generate_all_perms(current_index, word_len, s, strs, &perms_row_index);
+		generate_all_perms(current_index, word_len, s, strs, &strs_row_index);
 		sort_strs(strs, strs_count);
 		ptr = strs;
 		i = 0;
