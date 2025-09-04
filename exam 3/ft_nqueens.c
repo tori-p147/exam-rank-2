@@ -4,20 +4,15 @@ void	ft_putstr(char *str);
 
 #include <stdio.h>
 
-typedef struct s_board
-{
-	int y;
-	int x;
-} t_board;
-
 
 int	ft_is_safe(int array[], int col, int row)
 {
-	for (int i = 0; i < row; i++)
+	for (int i = 0; i < col; i++)
 	{
-		if (array[i] = col)
-			return (0);
-		else if ()
+		if ()
+		{
+
+		}
 	}
 	return (1);
 }
@@ -41,25 +36,10 @@ void	ft_array_max(int array[], int n, int row)
 	}
 }
 
-void print_board(int y, int x, char q)
-{
-	for (size_t i = 0; i < y; i++)
-	{
-		for (size_t j = 0; j < x; j++)
-		{
-			write();
-		}
-	}
-}
-
 int	main(void)
 {
 	int	array[4] = {0};
 	int	n = 4;
-	t_board board;
-	board.y = n;
-	board.x = n;
-
 	ft_array_max(array, n, 0);
 	return (0);
 }
