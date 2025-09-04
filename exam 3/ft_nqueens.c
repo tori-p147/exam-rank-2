@@ -15,10 +15,9 @@ int	ft_is_safe(int array[], int col, int row)
 {
 	for (int i = 0; i < row; i++)
 	{
-		if ()
-		{
-
-		}
+		if (array[i] = col)
+			return (0);
+		else if ()
 	}
 	return (1);
 }
